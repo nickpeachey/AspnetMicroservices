@@ -9,5 +9,10 @@ services:
     build:
       context: .
       dockerfile: Services/Catalog/Catalog.API/Dockerfile
+      
+  mongo_client:
+    image: mongoclient/mongoclient
+    ports:
+      - "3000:3000"
 volumes:
   mongo_data:
