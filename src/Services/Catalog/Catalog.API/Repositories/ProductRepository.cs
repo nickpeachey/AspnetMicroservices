@@ -28,7 +28,6 @@ namespace Catalog.API.Repositories
                     .Products
                     .Find(p => p.Id == id)
                     .FirstOrDefaultAsync();
-            
         }
 
         public async Task<IEnumerable<Product>> GetProductByName(string name)
