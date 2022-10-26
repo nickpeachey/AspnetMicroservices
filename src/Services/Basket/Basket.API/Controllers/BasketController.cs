@@ -21,7 +21,7 @@ namespace Basket.API.Controllers
             _webHostEnvironment = webHostEnvironment;
         }
 
-        [HttpGet("/env")]
+        [HttpGet("env", Name = "GetEnv")]
         public async Task<string> GetEnv()
         {
             return await Task.Run(() => _webHostEnvironment.EnvironmentName);
