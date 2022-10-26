@@ -1,7 +1,9 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Threading.Tasks;
 using Basket.API.Entities;
 using Basket.API.Repositories;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Basket.API.Controllers
@@ -11,10 +13,18 @@ namespace Basket.API.Controllers
     public class BasketController : ControllerBase
     {
         private readonly IBasketRepository _basketRepository;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public BasketController(IBasketRepository basketRepository)
+        public BasketController(IBasketRepository basketRepository, IWebHostEnvironment webHostEnvironment)
         {
             _basketRepository = basketRepository;
+            _webHostEnvironment = webHostEnvironment;
+        }
+
+        [HttpGet("/env")]
+        public async Task<string> GetEnv()
+        {
+            return await Task.Run(() => _webHostEnvironment.EnvironmentName);
         }
 
         [HttpGet]
