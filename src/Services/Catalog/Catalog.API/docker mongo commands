@@ -2,4 +2,4 @@ docker run -d -p 27017:27017 --name shopping-mongo mongo
 
 docker exec -it shopping-mongo /bin/bash
 
-docker-compose -f .\docker-compose.yml -f .\docker-compose.override.yml up -d --build
+docker-compose -f .\docker-compose.yml -f .\docker-compose.override.yml up -d --build	
