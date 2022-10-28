@@ -1,9 +1,10 @@
-﻿using System.Net;
-using System.Threading.Tasks;
-using Basket.API.Entities;
+﻿using Basket.API.Entities;
 using Basket.API.Repositories;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Net;
+using System.Threading.Tasks;
 
 namespace Basket.API.Controllers
 {
@@ -23,7 +24,9 @@ namespace Basket.API.Controllers
         [HttpGet("env", Name = "GetEnv")]
         public async Task<string> GetEnv()
         {
-            return await Task.Run(() => _webHostEnvironment.EnvironmentName);
+            var dbSett = Environment.GetEnvironmentVariable("CacheSettings__ConnectionString");
+
+            return await Task.Run(() => dbSett);
         }
 
         [HttpGet]

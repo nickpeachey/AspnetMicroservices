@@ -1,8 +1,8 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Catalog.API.Data;
 using Catalog.API.Entities;
 using MongoDB.Driver;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Catalog.API.Repositories
 {
@@ -36,7 +36,7 @@ namespace Catalog.API.Repositories
 
             return await _context.Products.Find(filter).ToListAsync();
         }
-        
+
         public async Task<IEnumerable<Product>> GetProductByCategoryName(string categoryName)
         {
             FilterDefinition<Product> filter = Builders<Product>.Filter.Eq(p => p.Category, categoryName);
@@ -48,7 +48,7 @@ namespace Catalog.API.Repositories
         {
             await _context.Products.InsertOneAsync(product);
         }
-        
+
         public async Task<bool> UpdateProduct(Product product)
         {
             var updatedResult = await _context
@@ -62,7 +62,7 @@ namespace Catalog.API.Repositories
         {
             FilterDefinition<Product> filter = Builders<Product>.Filter.Eq(p => p.Id, id);
             DeleteResult deleteResult = await _context.Products.DeleteOneAsync(filter);
-            return deleteResult.IsAcknowledged 
+            return deleteResult.IsAcknowledged
                    && deleteResult.DeletedCount > 0;
         }
     }

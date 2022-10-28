@@ -1,8 +1,8 @@
-﻿using System.Threading.Tasks;
-using Dapper;
+﻿using Dapper;
 using Discount.API.Entities;
 using Microsoft.Extensions.Configuration;
 using Npgsql;
+using System.Threading.Tasks;
 
 namespace Discount.API.Repositories
 {
@@ -19,8 +19,8 @@ namespace Discount.API.Repositories
             await using var connection = new NpgsqlConnection
                 (_configuration.GetValue<string>("DatabaseSettings:ConnectionString"));
 
-            var coupon = await connection.QueryFirstOrDefaultAsync<Coupon>("SELECT * FROM Coupon WHERE ProductName = @ProductName", new {ProductName=productName});
-            return coupon ?? new Coupon {Amount = 0,Description = "empty",ProductName = "No Discount"};
+            var coupon = await connection.QueryFirstOrDefaultAsync<Coupon>("SELECT * FROM Coupon WHERE ProductName = @ProductName", new { ProductName = productName });
+            return coupon ?? new Coupon { Amount = 0, Description = "empty", ProductName = "No Discount" };
         }
 
         public Task<bool> CreateDiscount(Coupon coupon)

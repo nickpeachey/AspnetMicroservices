@@ -1,10 +1,10 @@
-using System.Collections.Generic;
-using System.Net;
-using System.Threading.Tasks;
 using Catalog.API.Entities;
 using Catalog.API.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
+using System.Net;
+using System.Threading.Tasks;
 
 namespace Catalog.API.Controllers
 {
@@ -20,7 +20,7 @@ namespace Catalog.API.Controllers
             _repository = repository;
             _logger = logger;
         }
-       [HttpGet]
+        [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<Product>), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
         {
@@ -84,7 +84,7 @@ namespace Catalog.API.Controllers
             return Ok(await _repository.UpdateProduct(product));
         }
 
-        [HttpDelete("{id:length(24)}", Name = "DeleteProduct")]        
+        [HttpDelete("{id:length(24)}", Name = "DeleteProduct")]
         [ProducesResponseType(typeof(Product), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> DeleteProductById(string id)
         {

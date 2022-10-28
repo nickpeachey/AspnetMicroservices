@@ -1,6 +1,6 @@
-using System.Collections.Generic;
 using Catalog.API.Entities;
 using MongoDB.Driver;
+using System.Collections.Generic;
 
 namespace Catalog.API.Data
 {
@@ -15,7 +15,7 @@ namespace Catalog.API.Data
             }
         }
 
-private static IEnumerable<Product> GetPreconfiguredProducts()
+        private static IEnumerable<Product> GetPreconfiguredProducts()
         {
             return new List<Product>()
             {
